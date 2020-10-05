@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <h1>TV Show #{{ one_show.id}}</h1>
+    </nav>
+    <a href="/shows">Go Back</a>
+    <div>
+        <h4>Title</h4>
+        <p>{{ one_show.title }}</p>
+        <h4>Network</h4>
+        <p>{{ one_show.network }}</p>
+        <h4>Release Date</h4>
+        <p>{{ one_show.release_date }}</p>
+        <h4>Description</h4>
+        <p>{{ one_show.description }}</p>
+        <h4>Last Updated</h4>
+        <p>{{ one_show.updated_at }}</p>
+        <!-- <a href="/shows/{{ show.id }}/edit">Edit</a> | <a href="/shows/{{ show.id }}/delete">Delete</a> -->
+        <a href="/shows/{{ one_show.id }}/edit">Edit</a>
+    </div>
+</body>
+</html>
