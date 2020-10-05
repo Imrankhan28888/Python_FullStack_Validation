@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
+from django.contrib import messages
 
 def redirectreq(request):
     return redirect('/shows')
@@ -19,10 +20,16 @@ def new_show(request):
 
 def create_show(request):
     
+    errors = Show.objects.validate(request.POST)
+    if errors:
+        for (key, value) in errors.items():
+            messages.error(request, value)
+        return redirect('/shows/new')
+
     Show.objects.create(
         title=request.POST['title'],
         network=request.POST['network'],
-        release_date=request.POST['releasedate'],
+        release_date=request.POST['release_date'],
         description=request.POST['description']
         )
     return redirect('/shows')
