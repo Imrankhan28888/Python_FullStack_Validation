@@ -8,6 +8,9 @@ class ShowManager(models.Manager):
         errors = {}
         if len(form["title"]) < 2:
             errors["title"] = 'Title field should be at least 2 characters'
+        title_with_same_name = Show.objects.filter(title=form['title'])
+        if len(title_with_same_name) >0:
+            errors["duplicate"] = 'Name already taken, pick another one'
         if len(form['network']) < 3:
             errors["network"] = 'Network field should be at least 3 characters'
         if form['description'] != '' and len(form['description']) < 10:
